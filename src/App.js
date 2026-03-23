@@ -9,12 +9,12 @@ export default function App() {
 
   const [newSubject, setNewSubject] = useState({ name: "", teacher: "" });
   const [newActivity, setNewActivity] = useState({
-    type: "Tarea",
-    subject: "",
-    date: "",
-    description: "",
-    done: false,
-  });
+  type: "Tarea",
+  subject: subjects.length > 0 ? subjects[0].name : "",
+  date: "",
+  description: "",
+  done: false,
+});
 
   const messages = [
     "✨ ¡Muy bien! Sigue así 💜",
@@ -268,7 +268,7 @@ export default function App() {
               borderRadius: "10px",
             }}
           >
-            <option value="" disabled>Seleccionar materia</option>
+  
             {subjects.map((s, i) => (
               <option key={i}>{s.name}</option>
             ))}
