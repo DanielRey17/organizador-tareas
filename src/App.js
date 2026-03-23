@@ -71,7 +71,7 @@ export default function App() {
     setActivities(activities.filter(a => a.subject !== name));
   };
 
-  const addActivity = () => {
+ const addActivity = () => {
   if (subjects.length === 0) {
     alert("Primero agrega una materia 💜");
     return;
@@ -91,7 +91,17 @@ export default function App() {
     });
   }
 
-  // 🔥 SOLUCIÓN REAL
+  // 🔥 PRIMERO LIMPIAMOS
+  setCurrentSubject(null);
+  setShowMenu(false);
+
+  // 🔥 LUEGO CAMBIAMOS VISTA
+  setTimeout(() => {
+    setView("home");
+    window.scrollTo(0, 0);
+  }, 50);
+
+  // 🔥 AL FINAL RESET
   setNewActivity({
     type: "Tarea",
     subject: subjects[0]?.name || "",
@@ -99,9 +109,6 @@ export default function App() {
     description: "",
     done: false,
   });
-
-  setCurrentSubject(null); // limpia vista de materia
-  setView("home"); // cambia vista
 };
 
   const toggleDone = (activity) => {
