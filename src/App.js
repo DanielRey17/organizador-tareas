@@ -91,13 +91,7 @@ export default function App() {
     });
   }
 
-  // 👇 FORZAR CAMBIO DE PANTALLA
-  setView("");
-  
-  setTimeout(() => {
-    setView("home");
-  }, 50);
-
+  // 🔥 SOLUCIÓN REAL
   setNewActivity({
     type: "Tarea",
     subject: subjects[0]?.name || "",
@@ -105,6 +99,9 @@ export default function App() {
     description: "",
     done: false,
   });
+
+  setCurrentSubject(null); // limpia vista de materia
+  setView("home"); // cambia vista
 };
 
   const toggleDone = (activity) => {
