@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 export default function App() {
+  useEffect(() => {
+  if ("Notification" in window) {
+    Notification.requestPermission();
+  }
+}, []);
   const [subjects, setSubjects] = useState([]);
   const [activities, setActivities] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
@@ -77,6 +82,11 @@ export default function App() {
     }
 
     setActivities([...activities, newActivity]);
+    if (Notification.permission === "granted") {
+  new Notification("Nueva tarea 📚", {
+    body: newActivity.description || newActivity.type,
+  });
+}
     setNewActivity({ type: "Tarea", subject: subjects[0].name, date: "", description: "", done: false });
     setView("home");
   };
