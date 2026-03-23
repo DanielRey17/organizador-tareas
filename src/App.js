@@ -82,7 +82,8 @@ export default function App() {
     return;
   }
 
-  setActivities([...activities, newActivity]);
+  const updatedActivities = [...activities, newActivity];
+  setActivities(updatedActivities);
 
   if (Notification.permission === "granted") {
     new Notification("Nueva tarea 📚", {
@@ -90,9 +91,12 @@ export default function App() {
     });
   }
 
+  // 👇 FORZAR CAMBIO DE PANTALLA
+  setView("");
+  
   setTimeout(() => {
     setView("home");
-  }, 100);
+  }, 50);
 
   setNewActivity({
     type: "Tarea",
