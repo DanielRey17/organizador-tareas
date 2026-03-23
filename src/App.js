@@ -61,7 +61,10 @@ export default function App() {
   };
 
   const addActivity = () => {
-    if (!newActivity.subject) return;
+    if (!newActivity.subject) {
+  alert("Selecciona una materia primero 💜");
+  return;
+}
     setActivities([...activities, newActivity]);
     setNewActivity({
       type: "Tarea",
@@ -265,7 +268,7 @@ export default function App() {
               borderRadius: "10px",
             }}
           >
-            <option value="">Seleccionar materia</option>
+            <option value="" disabled>Seleccionar materia</option>
             {subjects.map((s, i) => (
               <option key={i}>{s.name}</option>
             ))}
