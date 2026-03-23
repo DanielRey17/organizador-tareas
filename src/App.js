@@ -71,7 +71,7 @@ export default function App() {
     setActivities(activities.filter(a => a.subject !== name));
   };
 
- const addActivity = () => {
+const addActivity = () => {
   if (subjects.length === 0) {
     alert("Primero agrega una materia 💜");
     return;
@@ -91,17 +91,7 @@ export default function App() {
     });
   }
 
-  // 🔥 PRIMERO LIMPIAMOS
-  setCurrentSubject(null);
-  setShowMenu(false);
-
-  // 🔥 LUEGO CAMBIAMOS VISTA
-  setTimeout(() => {
-    setView("home");
-    window.scrollTo(0, 0);
-  }, 50);
-
-  // 🔥 AL FINAL RESET
+  // Limpiar formulario
   setNewActivity({
     type: "Tarea",
     subject: subjects[0]?.name || "",
@@ -109,8 +99,16 @@ export default function App() {
     description: "",
     done: false,
   });
-};
 
+  // Ir a inicio
+  setView("home");
+
+  // 🔥 FORZAR CAMBIO EN APK
+  setTimeout(() => {
+    window.location.reload();
+  }, 100);
+};
+  
   const toggleDone = (activity) => {
     const updated = activities.map(a => {
       if (a === activity) {
