@@ -72,24 +72,36 @@ export default function App() {
   };
 
   const addActivity = () => {
-    if (subjects.length === 0) {
-      alert("Primero agrega una materia 💜");
-      return;
-    }
-    if (!newActivity.subject) {
-      alert("Selecciona una materia 💜");
-      return;
-    }
+  if (subjects.length === 0) {
+    alert("Primero agrega una materia 💜");
+    return;
+  }
 
-    setActivities([...activities, newActivity]);
-    if (Notification.permission === "granted") {
-  new Notification("Nueva tarea 📚", {
-    body: newActivity.description || newActivity.type,
-  });
-}
-    setNewActivity({ type: "Tarea", subject: subjects[0].name, date: "", description: "", done: false });
+  if (!newActivity.subject) {
+    alert("Selecciona una materia 💜");
+    return;
+  }
+
+  setActivities([...activities, newActivity]);
+
+  if (Notification.permission === "granted") {
+    new Notification("Nueva tarea 📚", {
+      body: newActivity.description || newActivity.type,
+    });
+  }
+
+  setTimeout(() => {
     setView("home");
-  };
+  }, 100);
+
+  setNewActivity({
+    type: "Tarea",
+    subject: subjects[0]?.name || "",
+    date: "",
+    description: "",
+    done: false,
+  });
+};
 
   const toggleDone = (activity) => {
     const updated = activities.map(a => {
